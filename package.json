@@ -1,0 +1,50 @@
+{
+  "name": "solidity-dev",
+  "version": "0.4.0",
+  "description": "Smart contracts of the Genie",
+  "main": "index.js",
+  "scripts": {
+    "test": "truffle test",
+    "build": "truffle compile",
+    "compile": "truffle compile",
+    "deploy-dev": "truffle migrate --network development",
+    "deploy-kovan": "truffle migrate --network kovan",
+    "deploy-ropsten": "truffle migrate --network ropsten",
+    "deploy-fuse": "truffle migrate --network fuse",
+    "deploy-mainnet": "truffle migrate --network mainnet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonprou/solidity-dev.git"
+  },
+  "standard": {
+    "env": {
+      "mocha": true,
+      "truffle/globals": true
+    },
+    "plugins": [
+      "truffle"
+    ]
+  },
+  "author": "leonprou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonprou/solidity-dev/issues"
+  },
+  "homepage": "https://github.com/leonprou/solidity-dev#readme",
+  "dependencies": {
+    "@chainlink/contracts": "^0.0.3",
+    "@chainlink/test-helpers": "^0.0.2",
+    "@openzeppelin/contracts-ethereum-package": "^2.5.0",
+    "@openzeppelin/test-helpers": "^0.5.5",
+    "@openzeppelin/upgrades": "^2.8.0",
+    "openzeppelin-solidity": "^3.0.0",
+    "truffle": "^5.1.23",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "bignumber.js": "^9.0.0",
+    "eslint-plugin-truffle": "^0.3.1",
+    "truffle-assertions": "^0.9.2"
+  }
+}
