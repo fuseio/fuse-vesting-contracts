@@ -7,6 +7,7 @@ networks/*
 .openzeppelin/.lock
 yarn-error.log
 .envrc
+.env
 zos.dev*.json
 .zos.session
 .zos.lock
@@ -19,3 +20,4 @@ test-results.xml
 abis
 junit
 .ganache-fork
+flats

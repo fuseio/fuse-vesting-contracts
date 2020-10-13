@@ -1,21 +1,24 @@
 {
-  "name": "solidity-dev",
-  "version": "0.4.0",
-  "description": "Smart contracts of the Genie",
+  "name": "fuse-vesting-contracts",
+  "version": "0.0.1",
+  "description": "Fuse token vesting smart contracts",
   "main": "index.js",
   "scripts": {
     "test": "truffle test",
     "build": "truffle compile",
     "compile": "truffle compile",
+    "flatten": "scripts/flatten.sh",
+    "abi": "scripts/abi.sh",
     "deploy-dev": "truffle migrate --network development",
     "deploy-kovan": "truffle migrate --network kovan",
     "deploy-ropsten": "truffle migrate --network ropsten",
+    "deploy-rinkeby": "truffle migrate --network rinkeby",
     "deploy-fuse": "truffle migrate --network fuse",
     "deploy-mainnet": "truffle migrate --network mainnet"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leonprou/solidity-dev.git"
+    "url": "git+https://github.com/fuseio/fuse-vesting-contracts.git"
   },
   "standard": {
     "env": {
@@ -26,25 +29,21 @@
       "truffle"
     ]
   },
-  "author": "leonprou",
+  "author": "fuseio",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leonprou/solidity-dev/issues"
+    "url": "https://github.com/fuseio/fuse-vesting-contracts/issues"
   },
-  "homepage": "https://github.com/leonprou/solidity-dev#readme",
+  "homepage": "https://github.com/fuseio/fuse-vesting-contracts#readme",
   "dependencies": {
-    "@chainlink/contracts": "^0.0.3",
-    "@chainlink/test-helpers": "^0.0.2",
-    "@openzeppelin/contracts-ethereum-package": "^2.5.0",
-    "@openzeppelin/test-helpers": "^0.5.5",
-    "@openzeppelin/upgrades": "^2.8.0",
-    "openzeppelin-solidity": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "openzeppelin-solidity": "~2.0.0",
     "truffle": "^5.1.23",
-    "truffle-hdwallet-provider": "^1.0.17"
-  },
-  "devDependencies": {
+    "truffle-hdwallet-provider": "^1.0.17",
     "bignumber.js": "^9.0.0",
     "eslint-plugin-truffle": "^0.3.1",
-    "truffle-assertions": "^0.9.2"
+    "node-jq": "^1.11.2",
+    "truffle-assertions": "^0.9.2",
+    "truffle-flattener": "^1.5.0"
   }
 }
