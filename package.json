@@ -8,13 +8,15 @@
     "build": "truffle compile",
     "compile": "truffle compile",
     "flatten": "scripts/flatten.sh",
+    "allocate": "python3 scripts/allocate.py",
     "abi": "scripts/abi.sh",
     "deploy-dev": "truffle migrate --network development",
     "deploy-kovan": "truffle migrate --network kovan",
     "deploy-ropsten": "truffle migrate --network ropsten",
     "deploy-rinkeby": "truffle migrate --network rinkeby",
     "deploy-fuse": "truffle migrate --network fuse",
-    "deploy-mainnet": "truffle migrate --network mainnet"
+    "deploy-mainnet": "truffle migrate --network mainnet",
+    "view": "solui view --spec contracts/ui.json --artifacts build/contracts"
   },
   "repository": {
     "type": "git",
