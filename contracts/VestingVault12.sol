@@ -20,7 +20,7 @@ contract VestingVault12 {
         _;
     }
 
-    uint256 constant internal SECONDS_PER_DAY = 86400;
+    uint256 constant internal SECONDS_PER_DAY = 60;
 
     struct Grant {
         uint256 startTime;
@@ -150,9 +150,8 @@ contract VestingVault12 {
         uint256 amountVested;
         (daysVested, amountVested) = calculateGrantClaim(_grantId);
 
-        uint256 amountNotVested = (tokenGrant.amount.sub(tokenGrant.totalClaimed)).sub(amountVested);
+        uint256 amountNotVested = tokenGrant.amount.sub(tokenGrant.totalClaimed);
 
-        require(token.transfer(recipient, amountVested));
         require(token.transfer(v12MultiSig, amountNotVested));
 
         tokenGrant.startTime = 0;
