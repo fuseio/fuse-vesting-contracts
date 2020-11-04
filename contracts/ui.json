@@ -3,7 +3,7 @@
   "production": true,
   "constants": {
     "vestingVault": {
-      "default": "0x928Ea68fA6CB7Db23178dF195ee8A2e9E1FFAb34"
+      "default": "0xd6E6304a5dB4cB55E905026cf98893C7f4765737"
     },
     "wfuse": {
       "default": "0xeF499a47b5762f72AEA464fFa184a380E5C571F3"
@@ -271,7 +271,7 @@
       "inputs": [
         {
           "name": "amount",
-          "title": "Amount of wrapped Fuse to unwrap",
+          "title": "Amount of wrapped Fuse to approve",
           "type": "int",
           "scale": "18"
         }

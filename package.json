@@ -17,7 +17,8 @@
     "deploy-rinkeby": "truffle migrate --network rinkeby",
     "deploy-fuse": "truffle migrate --network fuse",
     "deploy-mainnet": "truffle migrate --network mainnet",
-    "view": "solui view --spec contracts/ui.json --artifacts build/contracts"
+    "ui:view": "solui view --spec contracts/ui.json --artifacts build/contracts",
+    "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui"
   },
   "repository": {
     "type": "git",

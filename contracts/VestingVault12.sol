@@ -20,7 +20,7 @@ contract VestingVault12 {
         _;
     }
 
-    uint256 constant internal SECONDS_PER_DAY = 60;
+    uint256 constant internal SECONDS_PER_DAY = 3600;
 
     struct Grant {
         uint256 startTime;
@@ -89,7 +89,7 @@ contract VestingVault12 {
         return activeGrants[_recipient];
     }
 
-    /// @notice Calculate the vested and unclaimed months and tokens available for `_grantId` to claim
+    /// @notice Calculate the vested and unclaimed days and tokens available for `_grantId` to claim
     /// Due to rounding errors once grant duration is reached, returns the entire left grant amount
     /// Returns (0, 0) if cliff has not been reached
     function calculateGrantClaim(uint256 _grantId) public view returns (uint16, uint256) {
