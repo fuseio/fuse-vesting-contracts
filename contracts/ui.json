@@ -3,10 +3,10 @@
   "production": true,
   "constants": {
     "vestingVault": {
-      "default": "0xd6E6304a5dB4cB55E905026cf98893C7f4765737"
+      "default": "0xd2D13E4b2dD08C9E955d9DA9Ee8545254f499Af9"
     },
     "wfuse": {
-      "default": "0xeF499a47b5762f72AEA464fFa184a380E5C571F3"
+      "default": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629"
     }
   },
   "id": "fuse-vesting-contracts",
@@ -125,91 +125,6 @@
       ]
     },
     {
-      "id": "addTokenGrant",
-      "title": "Add Grant",
-      "description": "Add a new token grant of WFUSE. Please wrap your Fuse and approve the contract before",
-      "image": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
-      },
-      "inputs": [
-        {
-          "name": "recipient",
-          "title": "recipient",
-          "helpText": "Grant's recepient address",
-          "type": "address"
-        },
-        {
-          "name": "startTime",
-          "title": "start time",
-          "initialValue": 0,
-          "helpText": "start time of the grant in Unix epoch time, leave 0 to start from now. more info: https://www.epochconverter.com/",
-          "type": "int"
-        },
-        {
-          "name": "amount",
-          "title": "amount",
-          "helpText": "total amount of the grant",
-          "scale": "18",
-          "type": "int"
-        },
-        {
-          "name": "vestingDurationInDays",
-          "title": "duration",
-          "type": "int",
-          "helpText": "grant's duration"
-        },
-        {
-          "name": "vestingCliffInDays",
-          "title": "cliff",
-          "type": "int",
-          "initialValue": 0,
-          "helpText": "grant's cliff, leave 0 for no cliff"
-        }
-      ],
-      "execs": [
-        {
-          "type": "send",
-          "contract": "VestingVault12",
-          "address": "@constant[vestingVault]",
-          "method": "addTokenGrant",
-          "args": {
-            "_recipient": "@input[recipient]",
-            "_startTime": "@input[startTime]",
-            "_amount": "@input[amount]",
-            "_vestingDurationInDays": "@input[vestingDurationInDays]",
-            "_vestingCliffInDays": "@input[vestingCliffInDays]"
-          }
-        }
-      ]
-    },
-    {
-      "id": "removeTokenGrant",
-      "title": "Remove Grant",
-      "description": "Remove a new token grant of WFUSE",
-      "image": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
-      },
-      "inputs": [
-        {
-          "name": "grantId",
-          "title": "grantId",
-          "helpText": "Grant's id to remove",
-          "type": "int"
-        }
-      ],
-      "execs": [
-        {
-          "type": "send",
-          "contract": "VestingVault12",
-          "address": "@constant[vestingVault]",
-          "method": "removeTokenGrant",
-          "args": {
-            "_grantId": "@input[grantId]"
-          }
-        }
-      ]
-    },
-    {
       "id": "unwrap",
       "title": "Unwrap WFUSE",
       "description": "Unwrap your WFUSE tokens",
@@ -231,59 +146,6 @@
           "address": "@constant[wfuse]",
           "method": "withdraw",
           "args": {
-            "wad": "@input[amount]"
-          }
-        }
-      ]
-    },
-    {
-      "id": "wrap",
-      "title": "wrap WFUSE",
-      "description": "Wrap Fuse to WFUSE tokens",
-      "image": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
-      },
-      "inputs": [
-        {
-          "name": "amount",
-          "title": "Amount of wrapped Fuse to unwrap",
-          "type": "int",
-          "scale": "18"
-        }
-      ],
-      "execs": [
-        {
-          "type": "send",
-          "contract": "WETH9",
-          "address": "@constant[wfuse]",
-          "method": "deposit",
-          "transferAmount": "@input[amount]"
-        }
-      ]
-    },
-    {
-      "id": "approve",
-      "title": "Approve WFUSE",
-      "description": "approve the WFUSE for the vesting contract",
-      "image": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
-      },
-      "inputs": [
-        {
-          "name": "amount",
-          "title": "Amount of wrapped Fuse to approve",
-          "type": "int",
-          "scale": "18"
-        }
-      ],
-      "execs": [
-        {
-          "type": "send",
-          "contract": "WETH9",
-          "address": "@constant[wfuse]",
-          "method": "approve",
-          "args": {
-            "guy": "@constant[vestingVault]",
             "wad": "@input[amount]"
           }
         }
