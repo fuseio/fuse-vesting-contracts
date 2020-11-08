@@ -20,7 +20,7 @@ contract VestingVault12 {
         _;
     }
 
-    uint256 constant internal SECONDS_PER_DAY = 86400;
+    uint256 constant internal SECONDS_PER_DAY = 2628000;
 
     struct Grant {
         uint256 startTime;
@@ -89,7 +89,7 @@ contract VestingVault12 {
         return activeGrants[_recipient];
     }
 
-    /// @notice Calculate the vested and unclaimed months and tokens available for `_grantId` to claim
+    /// @notice Calculate the vested and unclaimed days and tokens available for `_grantId` to claim
     /// Due to rounding errors once grant duration is reached, returns the entire left grant amount
     /// Returns (0, 0) if cliff has not been reached
     function calculateGrantClaim(uint256 _grantId) public view returns (uint16, uint256) {
@@ -150,9 +150,8 @@ contract VestingVault12 {
         uint256 amountVested;
         (daysVested, amountVested) = calculateGrantClaim(_grantId);
 
-        uint256 amountNotVested = (tokenGrant.amount.sub(tokenGrant.totalClaimed)).sub(amountVested);
+        uint256 amountNotVested = tokenGrant.amount.sub(tokenGrant.totalClaimed);
 
-        require(token.transfer(recipient, amountVested));
         require(token.transfer(v12MultiSig, amountNotVested));
 
         tokenGrant.startTime = 0;

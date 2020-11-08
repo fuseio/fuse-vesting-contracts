@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "production": true,
+  "constants": {
+    "vestingVault": {
+      "default": "0xd2D13E4b2dD08C9E955d9DA9Ee8545254f499Af9"
+    },
+    "wfuse": {
+      "default": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629"
+    }
+  },
+  "id": "fuse-vesting-contracts",
+  "title": "Fuse Vesting",
+  "description": "Claim and manage Fuse vesting",
+  "aboutUrl": "https://github.com/fuseio/fuse-vesting-contracts",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Solidity_logo.svg"
+  },
+  "panels": [
+    {
+      "id": "getActiveGrants",
+      "title": "Grants",
+      "description": "Get your active grants",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "your address",
+          "type": "address"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "getActiveGrants",
+          "args": {
+            "_recipient": "@input[recipient]"
+          },
+          "saveResultAsInput": "activeGrants"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "your grant ids",
+          "help": "Amount of tokens can be claimed",
+          "type": "int[]",
+          "value": "@input[activeGrants]"
+        }
+      ]
+    },
+    {
+      "id": "calculateGrantClaim",
+      "title": "Calculate grant vested tokens",
+      "description": "Claim your fuse vested tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "calculateGrantClaim",
+          "args": {
+            "_grantId": "@input[grantId]"
+          },
+          "saveResultAsInput": "grant"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "Amount of vested tokens can be claimed",
+          "help": "Amount of tokens can be claimed",
+          "type": "int",
+          "transform": [
+            {
+            "type": "intToScaledIntString",
+            "scale": "-18"
+            }
+          ],
+          "value": "@input[grant][1]"
+        },
+        {
+          "title": "Days of the vested tokens",
+          "type": "int",
+          "value": "@input[grant][0]"
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "title": "Claim vested tokens",
+      "description": "Claim your fuse vested tokens. You will receive the wrapped Fuse token, follow the next step to unwrap it",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "claimVestedTokens",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unwrap",
+      "title": "Unwrap WFUSE",
+      "description": "Unwrap your WFUSE tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "amount",
+          "title": "Amount of wrapped Fuse to unwrap",
+          "type": "int",
+          "scale": "18"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "WETH9",
+          "address": "@constant[wfuse]",
+          "method": "withdraw",
+          "args": {
+            "wad": "@input[amount]"
+          }
+        }
+      ]
+    }
+  ]
+}
