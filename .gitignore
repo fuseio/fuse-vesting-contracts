@@ -21,3 +21,4 @@ abis
 junit
 .ganache-fork
 flats
+scripts/.*py
