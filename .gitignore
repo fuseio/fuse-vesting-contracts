@@ -17,7 +17,6 @@ zos.dev*.json
 coverage
 coverage.json
 test-results.xml
-abis
 junit
 .ganache-fork
 flats
