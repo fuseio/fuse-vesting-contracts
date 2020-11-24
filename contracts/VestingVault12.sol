@@ -20,7 +20,7 @@ contract VestingVault12 {
         _;
     }
 
-    uint256 constant internal SECONDS_PER_DAY = 2628000;
+    uint256 constant internal SECONDS_PER_DAY = 2678400;
 
     struct Grant {
         uint256 startTime;
