@@ -3,7 +3,7 @@
   "production": true,
   "constants": {
     "vestingVault": {
-      "default": "0xd2D13E4b2dD08C9E955d9DA9Ee8545254f499Af9"
+      "default": "0x2015Ce76b4CCE96bB69EAb52936156E710502730"
     },
     "wfuse": {
       "default": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629"
