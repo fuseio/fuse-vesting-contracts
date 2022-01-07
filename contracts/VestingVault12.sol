@@ -20,6 +20,11 @@ contract VestingVault12 {
         _;
     }
 
+    modifier onlyGrantRecipient(uint256 _grantId) {
+        require(tokenGrants[_grantId].recipient == msg.sender, "not recipient");
+        _;
+    }
+
     uint256 constant internal SECONDS_PER_DAY = 2678400;
 
     struct Grant {
@@ -122,7 +127,7 @@ contract VestingVault12 {
 
     /// @notice Allows a grant recipient to claim their vested tokens. Errors if no tokens have vested
     /// It is advised recipients check they are entitled to claim via `calculateGrantClaim` before calling this
-    function claimVestedTokens(uint256 _grantId) external {
+    function claimVestedTokens(uint256 _grantId) external onlyGrantRecipient(_grantId) {
         uint16 daysVested;
         uint256 amountVested;
         (daysVested, amountVested) = calculateGrantClaim(_grantId);
