@@ -21,3 +21,5 @@ junit
 .ganache-fork
 flats
 scripts/*.py
+cache
+artifacts
