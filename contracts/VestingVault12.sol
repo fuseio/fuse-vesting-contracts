@@ -45,7 +45,7 @@ contract VestingVault12 {
     ERC20 public token;
     
     mapping (uint256 => Grant) public tokenGrants;
-    mapping (address => uint[]) private activeGrants;
+    mapping (address => uint[]) public activeGrants;
     address public v12MultiSig;
     uint256 public totalVestingCount;
 
