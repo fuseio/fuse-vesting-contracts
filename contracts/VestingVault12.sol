@@ -25,7 +25,7 @@ contract VestingVault12 {
         _;
     }
 
-    uint256 constant internal SECONDS_PER_DAY = 2678400;
+    uint256 constant internal SECONDS_PER_DAY = 86400;
 
     struct Grant {
         uint256 startTime;
@@ -45,7 +45,7 @@ contract VestingVault12 {
     ERC20 public token;
     
     mapping (uint256 => Grant) public tokenGrants;
-    mapping (address => uint[]) public activeGrants;
+    mapping (address => uint[]) private activeGrants;
     address public v12MultiSig;
     uint256 public totalVestingCount;
 

@@ -3,7 +3,7 @@ const { expect } = require('chai')
 
 const { advanceTimeAndBlock } = require('./utilities/time')
 
-const DAY_IN_SECONDS = 2678400
+const DAY_IN_SECONDS = 86400
 
 describe('VestingVault12', () => {
     let vestingVault
