@@ -2,6 +2,14 @@ require('hardhat-deploy-ethers')
 require('@nomiclabs/hardhat-waffle')
 
 module.exports = {
+  networks: {
+    localhost: {
+      live: false
+    },
+    fuse: {
+      url: "https://rpc.fuse.io"
+    }
+  },
   solidity: {
     compilers: [
       {
