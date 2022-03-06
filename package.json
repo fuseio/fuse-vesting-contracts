@@ -17,7 +17,9 @@
     "deploy-rinkeby": "hardhat run --network rinkeby scripts/deploy.js",
     "deploy-fuse": "hardhat run --network fuse scripts/deploy.js",
     "ui:view": "solui view --spec contracts/ui.json --artifacts build/contracts",
-    "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui"
+    "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui",
+    "ui:manager:view": "solui view --spec contracts/ui-manager.json --artifacts build/contracts",
+    "ui:manager:build": "solui publish-folder --spec contracts/ui-manager.json --artifacts build/contracts --folder build/ui"
   },
   "repository": {
     "type": "git",
