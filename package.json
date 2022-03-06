@@ -18,7 +18,9 @@
     "deploy-fuse": "truffle migrate --network fuse",
     "deploy-mainnet": "truffle migrate --network mainnet",
     "ui:view": "solui view --spec contracts/ui.json --artifacts build/contracts",
-    "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui"
+    "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui",
+    "ui:manager:view": "solui view --spec contracts/ui-manager.json --artifacts build/contracts",
+    "ui:manager:build": "solui publish-folder --spec contracts/ui-manager.json --artifacts build/contracts --folder build/ui"
   },
   "repository": {
     "type": "git",

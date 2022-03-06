@@ -1,0 +1,293 @@
+{
+  "version": 1,
+  "production": true,
+  "constants": {
+    "vestingVault": {
+      "default": "0x2015Ce76b4CCE96bB69EAb52936156E710502730"
+    },
+    "wfuse": {
+      "default": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629"
+    }
+  },
+  "id": "fuse-vesting-contracts",
+  "title": "Fuse Vesting",
+  "description": "Claim and manage Fuse vesting",
+  "aboutUrl": "https://github.com/fuseio/fuse-vesting-contracts",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Solidity_logo.svg"
+  },
+  "panels": [
+    {
+      "id": "getActiveGrants",
+      "title": "Grants",
+      "description": "Get your active grants",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "your address",
+          "type": "address"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "getActiveGrants",
+          "args": {
+            "_recipient": "@input[recipient]"
+          },
+          "saveResultAsInput": "activeGrants"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "your grant ids",
+          "help": "Amount of tokens can be claimed",
+          "type": "int[]",
+          "value": "@input[activeGrants]"
+        }
+      ]
+    },
+    {
+      "id": "calculateGrantClaim",
+      "title": "Calculate grant vested tokens",
+      "description": "Claim your fuse vested tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "calculateGrantClaim",
+          "args": {
+            "_grantId": "@input[grantId]"
+          },
+          "saveResultAsInput": "grant"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "Amount of vested tokens can be claimed",
+          "help": "Amount of tokens can be claimed",
+          "type": "int",
+          "transform": [
+            {
+            "type": "intToScaledIntString",
+            "scale": "-18"
+            }
+          ],
+          "value": "@input[grant][1]"
+        },
+        {
+          "title": "Days of the vested tokens",
+          "type": "int",
+          "value": "@input[grant][0]"
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "title": "Claim vested tokens",
+      "description": "Claim your fuse vested tokens. You will receive the wrapped Fuse token, follow the next step to unwrap it",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "claimVestedTokens",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "addTokenGrant",
+      "title": "Add Grant",
+      "description": "Add a new token grant of WFUSE. Please wrap your Fuse and approve the contract before",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "recipient",
+          "helpText": "Grant's recepient address",
+          "type": "address"
+        },
+        {
+          "name": "startTime",
+          "title": "start time",
+          "initialValue": 0,
+          "helpText": "start time of the grant in Unix epoch time, leave 0 to start from now. more info: https://www.epochconverter.com/",
+          "type": "int"
+        },
+        {
+          "name": "amount",
+          "title": "amount",
+          "helpText": "total amount of the grant",
+          "scale": "18",
+          "type": "int"
+        },
+        {
+          "name": "vestingDurationInDays",
+          "title": "duration",
+          "type": "int",
+          "helpText": "grant's duration"
+        },
+        {
+          "name": "vestingCliffInDays",
+          "title": "cliff",
+          "type": "int",
+          "initialValue": 0,
+          "helpText": "grant's cliff, leave 0 for no cliff"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "addTokenGrant",
+          "args": {
+            "_recipient": "@input[recipient]",
+            "_startTime": "@input[startTime]",
+            "_amount": "@input[amount]",
+            "_vestingDurationInDays": "@input[vestingDurationInDays]",
+            "_vestingCliffInDays": "@input[vestingCliffInDays]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "removeTokenGrant",
+      "title": "Remove Grant",
+      "description": "Remove a new token grant of WFUSE",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "grantId",
+          "helpText": "Grant's id to remove",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "removeTokenGrant",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unwrap",
+      "title": "Unwrap WFUSE",
+      "description": "Unwrap your WFUSE tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "amount",
+          "title": "Amount of wrapped Fuse to unwrap",
+          "type": "int",
+          "scale": "18"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "WETH9",
+          "address": "@constant[wfuse]",
+          "method": "withdraw",
+          "args": {
+            "wad": "@input[amount]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrap",
+      "title": "wrap WFUSE",
+      "description": "Wrap Fuse to WFUSE tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "amount",
+          "title": "Amount of wrapped Fuse to unwrap",
+          "type": "int",
+          "scale": "18"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "WETH9",
+          "address": "@constant[wfuse]",
+          "method": "deposit",
+          "transferAmount": "@input[amount]"
+        }
+      ]
+    },
+    {
+      "id": "approve",
+      "title": "Approve WFUSE",
+      "description": "approve the WFUSE for the vesting contract",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "amount",
+          "title": "Amount of wrapped Fuse to approve",
+          "type": "int",
+          "scale": "18"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "WETH9",
+          "address": "@constant[wfuse]",
+          "method": "approve",
+          "args": {
+            "guy": "@constant[vestingVault]",
+            "wad": "@input[amount]"
+          }
+        }
+      ]
+    }
+  ]
+}
