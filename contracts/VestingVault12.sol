@@ -20,11 +20,6 @@ contract VestingVault12 {
         _;
     }
 
-    modifier onlyGrantRecipient(uint256 _grantId) {
-        require(tokenGrants[_grantId].recipient == msg.sender, "not recipient");
-        _;
-    }
-
     uint256 constant internal SECONDS_PER_DAY = 86400;
 
     struct Grant {
