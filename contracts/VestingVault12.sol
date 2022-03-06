@@ -127,7 +127,7 @@ contract VestingVault12 {
 
     /// @notice Allows a grant recipient to claim their vested tokens. Errors if no tokens have vested
     /// It is advised recipients check they are entitled to claim via `calculateGrantClaim` before calling this
-    function claimVestedTokens(uint256 _grantId) external onlyGrantRecipient(_grantId) {
+    function claimVestedTokens(uint256 _grantId) external {
         uint16 daysVested;
         uint256 amountVested;
         (daysVested, amountVested) = calculateGrantClaim(_grantId);

@@ -100,18 +100,6 @@ describe('VestingVault12', () => {
             )
         })
 
-        it('only recipient can claim their grant', async () => {
-            await advanceTimeAndBlock(DAY_IN_SECONDS * 10)
-
-            await expect(
-                vestingVault.claimVestedTokens(0)
-            ).to.be.revertedWith('not recipient')
-
-            await vestingVault.connect(signers[1]).claimVestedTokens(0)
-
-            expect(await token.balanceOf(signers[1].address)).to.be.equal('20')
-        })
-
         it('recipient can claim their grant daily', async () => {
             await advanceTimeAndBlock(DAY_IN_SECONDS * 10)
 
@@ -122,6 +110,20 @@ describe('VestingVault12', () => {
             await advanceTimeAndBlock(DAY_IN_SECONDS * 1)
 
             await vestingVault.connect(signers[1]).claimVestedTokens(0)
+
+            expect(await token.balanceOf(signers[1].address)).to.be.equal('22')
+        })
+
+        it('not recipient can claim their grant daily for the recipient', async () => {
+            await advanceTimeAndBlock(DAY_IN_SECONDS * 10)
+
+            await vestingVault.claimVestedTokens(0)
+
+            expect(await token.balanceOf(signers[1].address)).to.be.equal('20')
+
+            await advanceTimeAndBlock(DAY_IN_SECONDS * 1)
+
+            await vestingVault.claimVestedTokens(0)
 
             expect(await token.balanceOf(signers[1].address)).to.be.equal('22')
         })
