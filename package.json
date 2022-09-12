@@ -19,7 +19,9 @@
     "ui:view": "solui view --spec contracts/ui.json --artifacts build/contracts",
     "ui:build": "solui publish-folder --spec contracts/ui.json --artifacts build/contracts --folder build/ui",
     "ui:manager:view": "solui view --spec contracts/ui-manager.json --artifacts build/contracts",
-    "ui:manager:build": "solui publish-folder --spec contracts/ui-manager.json --artifacts build/contracts --folder build/ui"
+    "ui:manager:build": "solui publish-folder --spec contracts/ui-manager.json --artifacts build/contracts --folder build/ui",
+    "ui:comp": "solui view --spec contracts/ui-comp.json --artifacts artifacts/contracts",
+    "ui:comp:build": "solui publish-folder --spec contracts/ui-comp.json --artifacts artifacts/contracts --folder ui"
   },
   "repository": {
     "type": "git",
@@ -43,7 +45,7 @@
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@solui/cli": "^1.21.1",
+    "@solui/cli": "^1.23.0",
     "bignumber.js": "^9.0.0",
     "chai": "^4.3.4",
     "dotenv": "^8.2.0",

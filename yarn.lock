@@ -2201,6 +2201,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pinata/sdk@npm:^1.1.11":
+  version: 1.1.25
+  resolution: "@pinata/sdk@npm:1.1.25"
+  dependencies:
+    axios: ^0.21.1
+    base-path-converter: ^1.0.2
+    form-data: ^2.3.3
+    is-ipfs: ^0.6.0
+    recursive-fs: ^1.1.2
+  checksum: 1dd8e3ea5b6bb4314b9fa52837e83361f4a7d3085d875b81648bd5e82d917c867276dfde3033df26bc066d3d5f480b67439065d879ec18c14fe96a0b7c7e7525
+  languageName: node
+  linkType: hard
+
 "@popperjs/core@npm:^2.4.4":
   version: 2.5.4
   resolution: "@popperjs/core@npm:2.5.4"
@@ -2390,9 +2403,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solui/cli@npm:^1.21.1":
-  version: 1.21.1
-  resolution: "@solui/cli@npm:1.21.1"
+"@solui/cli@npm:^1.23.0":
+  version: 1.23.0
+  resolution: "@solui/cli@npm:1.23.0"
   dependencies:
     "@babel/core": ^7.4.4
     "@babel/preset-env": ^7.4.4
@@ -2402,10 +2415,10 @@ __metadata:
     "@emotion/styled": ^10.0.15
     "@fortawesome/fontawesome-svg-core": ^1.2.25
     "@hot-loader/react-dom": ^16.9.0
-    "@solui/graphql": ^1.20.8
-    "@solui/processor": ^1.21.0
-    "@solui/react": ^1.20.8
-    "@solui/utils": ^1.20.5
+    "@solui/graphql": ^1.22.0
+    "@solui/processor": ^1.22.0
+    "@solui/react": ^1.22.0
+    "@solui/utils": ^1.22.0
     axios: ^0.19.0
     babel-loader: ^8.0.6
     chalk: ^2.4.2
@@ -2436,15 +2449,15 @@ __metadata:
     webpack-virtual-modules: ^0.1.11
   bin:
     solui: dist/solui
-  checksum: e3fe980205273ebaa874df83d65d9944912df780bf3af4a06f31c9f65a1d21c70fc97b55e7624af2f99c5d922745fd4a9d9ff89d23c48ad48598847b7789b236
+  checksum: 58199807e125d9e694bcdfd06fc5b3eca3a8d5c27054a24456fb38f0c56edef711a8003b3c321d7dc0c3d4828869031a9049a4b90c4c0664665c4e970bf8139d
   languageName: node
   linkType: hard
 
-"@solui/graphql@npm:^1.20.8":
-  version: 1.20.8
-  resolution: "@solui/graphql@npm:1.20.8"
+"@solui/graphql@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@solui/graphql@npm:1.22.0"
   dependencies:
-    "@solui/utils": ^1.20.5
+    "@solui/utils": ^1.22.0
     apollo-cache-inmemory: ^1.6.3
     apollo-client: ^2.6.4
     apollo-link: ^1.2.13
@@ -2455,22 +2468,22 @@ __metadata:
     graphql-tag: ^2.10.1
     graphql-type-json: ^0.3.1
     node-fetch: ^2.6.0
-  checksum: 54511ca7eec4b6e03cefe7c37cf71f57f32edcfcd8f1b6ffd218dcb41a996fb2d5964140048b6525cffb09754d2e4f4c8f41719eec9c458672706d7e0eed7040
+  checksum: df27bccfa2177b5cd728e46983757a592d228a5e77575052d354b5757a5452680351d6625c4f408dab098f507a95fce57afd3d0d0f91454ab41f1e5fad8e9d75
   languageName: node
   linkType: hard
 
-"@solui/processor@npm:^1.21.0":
-  version: 1.21.0
-  resolution: "@solui/processor@npm:1.21.0"
+"@solui/processor@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@solui/processor@npm:1.22.0"
   dependencies:
-    "@solui/utils": ^1.20.5
-  checksum: 8f2d7a76d601ec9e8633e6000e47b6880b8b5dd2dae10fbb3d37075e28fb1b3d0ae8375cebd57471888bebf037a2bb321fc4115dc8ca8d822d3a13b91c23d51c
+    "@solui/utils": ^1.22.0
+  checksum: 812042878305fe5af22480ba26da525adeb8ca9c6a9d6e7842f7b2c11960d62d75886a536a2f87feceda7e834ea4767d6b6264168191d5d2a32c84c24e42d9cb
   languageName: node
   linkType: hard
 
-"@solui/react@npm:^1.20.8":
-  version: 1.20.8
-  resolution: "@solui/react@npm:1.20.8"
+"@solui/react@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@solui/react@npm:1.22.0"
   dependencies:
     "@emotion/core": ^10.0.17
     "@emotion/styled": ^10.0.17
@@ -2478,9 +2491,9 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^5.12.0
     "@fortawesome/react-fontawesome": ^0.1.4
     "@reach/observe-rect": ^1.0.3
-    "@solui/graphql": ^1.20.8
+    "@solui/graphql": ^1.22.0
     "@solui/styles": ^1.20.5
-    "@solui/utils": ^1.20.5
+    "@solui/utils": ^1.22.0
     "@tippyjs/react": ^4.0.0-alpha.4
     clipboard-polyfill: ^2.8.6
     emotion-theming: ^10.0.27
@@ -2495,7 +2508,7 @@ __metadata:
   peerDependencies:
     react: ^16.9.0
     react-dom: ^16.9.0
-  checksum: d5e51bbf8fb1c97e0106b3fe8d50270b34bb714c3f1fce765a631962be206e06988493be695aca73a7b07b747cbad48ab9a7dc124173358e547d9054299c428f
+  checksum: 31824e5e8cb5d40faad7e70d478e0aae5e48e1facaa3e7aeecda86dd99968f4e7d627f741efecff258bd8f377010e1e78c7b5bb0f39175a0840ae718d647fef6
   languageName: node
   linkType: hard
 
@@ -2510,10 +2523,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solui/utils@npm:^1.20.5":
-  version: 1.20.5
-  resolution: "@solui/utils@npm:1.20.5"
+"@solui/utils@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@solui/utils@npm:1.22.0"
   dependencies:
+    "@pinata/sdk": ^1.1.11
     axios: ^0.19.0
     date-fns: ^2.3.0
     decimal.js: ^10.2.0
@@ -2535,7 +2549,7 @@ __metadata:
     slugify: ^1.3.6
     url-parse: ^1.4.7
     validator: ^11.1.0
-  checksum: 5378d0490d344343a7cbf74d58d779a4214f6351dcbc8b858c457aa300f3e1eecb9a06fdd1dc7111cd5b3db6c361fda0f32d92213864e47badfe6dc44e46ea3b
+  checksum: ac0f4bcaca5b12a82e04b339a220b745fa076d0f83eb18d37d769282fdba115abba2ec8939b752712f87e80f527c9dc5c0391147098a303b5f1f0c0ca92c806c
   languageName: node
   linkType: hard
 
@@ -3826,6 +3840,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.21.1":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
+  dependencies:
+    follow-redirects: ^1.14.0
+  checksum: 44245f24ac971e7458f3120c92f9d66d1fc695e8b97019139de5b0cc65d9b8104647db01e5f46917728edfc0cfd88eb30fc4c55e6053eef4ace76768ce95ff3c
+  languageName: node
+  linkType: hard
+
 "babel-code-frame@npm:^6.26.0":
   version: 6.26.0
   resolution: "babel-code-frame@npm:6.26.0"
@@ -4543,6 +4566,13 @@ __metadata:
   version: 1.0.0
   resolution: "balanced-match@npm:1.0.0"
   checksum: 9b67bfe558772f40cf743a3469b48b286aecec2ea9fe80c48d74845e53aab1cef524fafedf123a63019b49ac397760573ef5f173f539423061f7217cbb5fbd40
+  languageName: node
+  linkType: hard
+
+"base-path-converter@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "base-path-converter@npm:1.0.2"
+  checksum: 9fca25198e4588ab46389426ee51b81d296000dbb132fe9228b90f93d0f89dead66468f63da37519e972c634c1ccfe136442c300b9762fb83265532cf2ac32e0
   languageName: node
   linkType: hard
 
@@ -8508,6 +8538,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.14.0":
+  version: 1.14.9
+  resolution: "follow-redirects@npm:1.14.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
+  languageName: node
+  linkType: hard
+
 "fontfaceobserver@npm:^2.1.0":
   version: 2.1.0
   resolution: "fontfaceobserver@npm:2.1.0"
@@ -8535,6 +8575,17 @@ __metadata:
   version: 0.6.1
   resolution: "forever-agent@npm:0.6.1"
   checksum: 766ae6e220f5fe23676bb4c6a99387cec5b7b62ceb99e10923376e27bfea72f3c3aeec2ba5f45f3f7ba65d6616965aa7c20b15002b6860833bb6e394dea546a8
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^2.3.3":
+  version: 2.5.1
+  resolution: "form-data@npm:2.5.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.6
+    mime-types: ^2.1.12
+  checksum: 5134ada56cc246b293a1ac7678dba6830000603a3979cf83ff7b2f21f2e3725202237cfb89e32bcb38a1d35727efbd3c3a22e65b42321e8ade8eec01ce755d08
   languageName: node
   linkType: hard
 
@@ -8776,7 +8827,7 @@ __metadata:
   dependencies:
     "@nomiclabs/hardhat-ethers": ^2.0.4
     "@nomiclabs/hardhat-waffle": ^2.0.1
-    "@solui/cli": ^1.21.1
+    "@solui/cli": ^1.23.0
     bignumber.js: ^9.0.0
     chai: ^4.3.4
     dotenv: ^8.2.0
@@ -10534,7 +10585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-ipfs@npm:~0.6.1":
+"is-ipfs@npm:^0.6.0, is-ipfs@npm:~0.6.1":
   version: 0.6.3
   resolution: "is-ipfs@npm:0.6.3"
   dependencies:
@@ -14844,6 +14895,16 @@ __metadata:
   dependencies:
     picomatch: ^2.2.1
   checksum: 1ced032e6e45670b6d7352d71d21ce7edf7b9b928494dcaba6f11fba63180d9da6cd7061ebc34175ffda6ff529f481818c962952004d273178acd70f7059b320
+  languageName: node
+  linkType: hard
+
+"recursive-fs@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "recursive-fs@npm:1.1.2"
+  bin:
+    recursive-copy: ./bin/recursive-copy
+    recursive-delete: ./bin/recursive-delete
+  checksum: 6b330d2e6b1359b179736c77ecdf64cc98e778fde676ca7b39b3ea6045dbab4d659d625ffb45e1c31871e8ee2c9bc73f9cf72f661baecf1053677614ceef0989
   languageName: node
   linkType: hard
 
