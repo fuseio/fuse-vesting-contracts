@@ -6,4 +6,5 @@ fi
 
 mkdir flats
 
-./node_modules/.bin/truffle-flattener contracts/VestingVault12.sol > flats/VestingVault12_flat.sol
+hardhat flatten contracts/VestingVault12.sol > flats/VestingVault12_flat.sol
+hardhat flatten contracts/VestingVault13.sol > flats/VestingVault13_flat.sol

@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "production": true,
+  "constants": {
+    "vestingVault": {
+      "default": "0xF59337f0628636D18cB5Ef54F8fEC341FAD148eF"
+    },
+    "vestingVaultUsdc": {
+      "default": "0x235959bbc22c48DC03CfB9CE69dC434C248e6A6F"
+    },
+    "vestingVaultVolt": {
+      "default": "0x145D8289dAc99a0919AB2F6EFb2621a65fF770B1"
+    },
+    "wfuse": {
+      "default": "0x0BE9e53fd7EDaC9F859882AfdDa116645287C629"
+    }
+  },
+  "id": "fuse-vesting-contracts",
+  "title": "Fuse Compensation Plan",
+  "description": "Compensation plan",
+  "aboutUrl": "https://github.com/fuseio/fuse-vesting-contracts",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Solidity_logo.svg"
+  },
+  "panels": [
+    {
+      "id": "getActiveGrants",
+      "title": "Fuse token",
+      "description": "Get your compensation id",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "your address",
+          "type": "address"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "getActiveGrants",
+          "args": {
+            "_recipient": "@input[recipient]"
+          },
+          "saveResultAsInput": "activeGrants"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "your compensation ids",
+          "help": "",
+          "type": "int[]",
+          "value": "@input[activeGrants]"
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "title": "Claim vested tokens",
+      "description": "Claim Fuse vested tokens. You will receive WFUSE",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVault]",
+          "method": "claimVestedTokens",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "getActiveGrantsUsdc",
+      "title": "USDC",
+      "description": "Get your compensation id",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "your address",
+          "type": "address"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVaultUsdc]",
+          "method": "getActiveGrants",
+          "args": {
+            "_recipient": "@input[recipient]"
+          },
+          "saveResultAsInput": "activeGrants"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "your compensation ids",
+          "help": "",
+          "type": "int[]",
+          "value": "@input[activeGrants]"
+        }
+      ]
+    },
+    {
+      "id": "claimUsdc",
+      "title": "Claim vested tokens",
+      "description": "Claim USDC vested tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVaultUsdc]",
+          "method": "claimVestedTokens",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "getActiveGrantsVolt",
+      "title": "VOLT",
+      "description": "Get your compensation id",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "recipient",
+          "title": "your address",
+          "type": "address"
+        }
+      ],
+      "execs": [
+        {
+          "type": "call",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVaultVolt]",
+          "method": "getActiveGrants",
+          "args": {
+            "_recipient": "@input[recipient]"
+          },
+          "saveResultAsInput": "activeGrants"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "your compensation ids",
+          "help": "",
+          "type": "int[]",
+          "value": "@input[activeGrants]"
+        }
+      ]
+    },
+    {
+      "id": "claimVolt",
+      "title": "Claim vested tokens",
+      "description": "Claim VOLT vested tokens",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Google-Cloud-Functions.svg"
+      },
+      "inputs": [
+        {
+          "name": "grantId",
+          "title": "Grant id",
+          "type": "int"
+        }
+      ],
+      "execs": [
+        {
+          "type": "send",
+          "contract": "VestingVault12",
+          "address": "@constant[vestingVaultVolt]",
+          "method": "claimVestedTokens",
+          "args": {
+            "_grantId": "@input[grantId]"
+          }
+        }
+      ]
+    }
+  ]
+}
